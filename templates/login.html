@@ -3,4 +3,30 @@
 <!-- body content of the page -->
 {% block body %}
 <h1>welcome to login page</h1>
+<div class="box">
+    <form action="">
+        <div>
+            <label for="UName">Username</label>
+            <input type="text" id="UName">
+        </div>
+        <div>
+            <label for="pwd">Password</label>
+            <input type="text" id="pwd">
+        </div>
+
+        <div class="submit">
+            <input type="submit" value="Sign in">
+        </div>
+    </form>
+</div>
+</section>
+<!-- section区域  end -->
+<!-- foot 区域  start -->
+<footer>
+<div class="footbody container">
+    <ul class="flexBox flexCenter">
+        <li class="bigWrite"><a href="./index.html">name</a></li>
+    </ul>
+    <p><a href="">Contact us</a></p>
+    <p>XXX-XXXX-XXXX</p>
 {% endblock %}
