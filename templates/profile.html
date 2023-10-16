@@ -1,6 +1,123 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- body content of the page -->
-{% block body %}
-<h1>welcome to profile page</h1>
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        width: 500px;
+        height: 500px;
+        border-collapse: collapse;
+        text-align: center;
+        margin-left: 100px;
+        margin-right: 100px;
+        display: inline;
+    }
+
+    .tableform {
+        text-align: center;
+
+    }
+
+    #table1 {
+        /* float: left; */
+
+    }
+
+    #table2 {
+        /* float: right; */
+    }
+
+    th {
+        border: 1px solid #181414;
+        text-align: center;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+    }
+
+        /* hidden log out */
+        .submenu {
+        display: none;
+        position: absolute;
+        background-color: #117b3f;;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 1;
+
+    }
+
+    /* hover to show */
+    .menu #list li:hover .submenu {
+        display: block;
+
+    }
+</style>
+
+<header>
+    <ul class="menu">
+        <div id="logo">
+            <li class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="" height="45px"></li>
+        </div>
+        
+        <div id="list">
+            <!-- <li><a href="#">Home</a></li> -->
+            <li>
+                <a href="#">Hello,username</a>
+                <div class="submenu">
+                    <a href="#">My profile</a>
+                    <a href="#">Log out</a>
+                </div>
+            </li>
+        </div>
+    </ul>
+</header>
+
+<body>
+    <div class="container">
+        <h1>welcome to profile page</h1>
+
+        <div class="tableForm">
+
+            <table id="table1">
+                <tr>
+                    <th>History</th>
+                </tr>
+                <tr>
+                    <th>22222222222222222222222222222222222</th>
+                </tr>
+                <tr>
+                    <th>3</th>
+                </tr>
+                <tr>
+                    <th>4</th>
+                </tr>
+                <tr>
+                    <th>5</th>
+                </tr>
+                <tr>
+                    <th>.....</th>
+                </tr>
+                </tr>
+
+            </table>
+            <table id="table2">
+                <tr>
+                    <th>.....</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+<footer>
+    &copy; 2023 Your Website Name. All Rights Reserved.
+</footer>
+
+</html>
+
+

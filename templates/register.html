@@ -2,35 +2,30 @@
 
 <!-- body content of the page -->
 {% block body %}
-<h1>welcome to sign up page</h1>
-<div class="box">
-    <form action="">
-        <div>
-            <label for="UName">Username</label>
-            <input type="text" id="UName">
+
+
+<body>
+    <div class="container">
+        <h2>Weclome to register home</h2>
+        <div class="form1">
+            <form action="" method="post">
+                <label for="username">Username：</label></br>
+                <input type="text" id="uname" name="username" required><br><br>
+
+                <label for="email">Email：</label></br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="password">Password：</label></br>
+                <input type="password" id="pwd" name="password" required><br><br>
+
+                <label for="confirm_password">Confirm Password：</label></br>
+                <input type="password" id="con_pwd" name="confirm_password" required><br><br>
+
+
+
+                <input type="submit" value="Submit"></br>
+            </form>
         </div>
-        <div>
-            <label for="pwd">Password</label>
-            <input type="text" id="pwd">
-        </div>
-        <div>
-            <label for="Email">Email</label>
-            <input type="text" id="Email">
-        </div>
-        <div class="submit">
-            <input type="submit" value="Submit">
-        </div>
-        <!-- email·，first name， last name，password, second password -->
-    </form>
-</div>
-</section>
-<!-- section区域  end -->
-<!-- foot 区域  start -->
-<footer>
-<div class="footbody container">
-    <ul class="flexBox flexCenter">
-        <li class="bigWrite"><a href="./index.html">name</a></li>
-    </ul>
-    <p><a href="">Contact us</a></p>
-    <p>XXX-XXXX-XXXX</p>
+    </div>
+</body>
 {% endblock %}

@@ -1,9 +1,105 @@
-p;{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- body content of the page -->
-{% block body %}
-<h1>welcome to main page</h1>
-<p>weeee hello</p>
-<h3>hello testing</h3>
-<p>cc testing</p>
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Document</title>
+</head>
+<style>
+    .search {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    input[type="text"] {
+        width: 300px;
+        padding: 10px;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4285F4;
+        color: #fff;
+        border: none;
+        width: 100px;
+    }
+
+    form {
+        display: inline;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 48px;
+    }
+
+    .context {
+        width: 400px;
+        height: auto;
+        background-color: aliceblue;
+        margin: auto;
+    }
+
+
+
+    /* hidden log out */
+    .submenu {
+        display: none;
+        position: absolute;
+        background-color: #117b3f;;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 1;
+
+    }
+
+    /* hover to show */
+    .menu #list li:hover .submenu {
+        display: block;
+
+    }
+</style>
+<header>
+    <ul class="menu">
+        <div id="logo">
+            <li class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="" height="45px"></li>
+        </div>
+        
+        <div id="list">
+            <!-- <li><a href="#">Home</a></li> -->
+            <li>
+                <a href="#">Hello,username</a>
+                <div class="submenu">
+                    <a href="#">My profile</a>
+                    <a href="#">Log out</a>
+                </div>
+            </li>
+        </div>
+    </ul>
+</header>
+
+<body>
+
+    <div id="container">
+
+        <h1>Welcome to map</h1>
+        <div class="search">
+            <form action="" method="">
+                <input type="text" name="textblock" placeholder="Enter your IP address">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        <div class="context">
+            <p>map</p>
+        </div>
+
+    </div>
+
+</body>
+<footer>
+    &copy; 2023 Your Website Name. All Rights Reserved.
+</footer>
+
+</html>

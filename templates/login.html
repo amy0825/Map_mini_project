@@ -1,37 +1,20 @@
 {% extends "base.html" %}
-
 <!-- body content of the page -->
 {% block body %}
-<h1>welcome to login page</h1>
-<<<<<<< HEAD
-<div class="box">
-    <form action="">
-        <div>
-            <label for="UName">Username</label>
-            <input type="text" id="UName">
-        </div>
-        <div>
-            <label for="pwd">Password</label>
-            <input type="text" id="pwd">
-        </div>
 
-        <div class="submit">
-            <input type="submit" value="Sign in">
+
+<body>
+    <h1>welcome to login page</h1>
+    <div class="container">
+        <div class="form1">
+            <form action="" method="post">
+                <label for="username">Username：</label></br>
+                <input type="text" id="uname" name="username" required><br><br>
+                <label for="password">Password：</label></br>
+                <input type="password" id="pwd" name="password" required><br><br>
+                <input type="submit" value="Submit"></br>
+            </form>
         </div>
-    </form>
-</div>
-</section>
-<!-- section区域  end -->
-<!-- foot 区域  start -->
-<footer>
-<div class="footbody container">
-    <ul class="flexBox flexCenter">
-        <li class="bigWrite"><a href="./index.html">name</a></li>
-    </ul>
-    <p><a href="">Contact us</a></p>
-    <p>XXX-XXXX-XXXX</p>
+    </div>
+</body>
 {% endblock %}
-=======
-<p>Test to pull</p>
-{% endblock %}
->>>>>>> c1fdf7bc5d7e284fafabc69670cbe3cce0963e88
