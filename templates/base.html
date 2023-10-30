@@ -15,12 +15,12 @@
         <header>
             <ul>
                 <div id="logo">
-                    <li class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="" height="45px"></li>
+                    <li class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="" height="50px"></li>
                 </div>
                 <div id="list">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Sign up</a></li>
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                    <li><a href="{{url_for('login')}}">Login</a></li>
+                    <li><a href="{{url_for('register')}}">Sign up</a></li>
                 </div>
             </ul>
         </header>
@@ -31,7 +31,7 @@
         <!-- fixed -->
 
         <footer>
-            &copy; 2023 Your Website Name. All Rights Reserved.
+            &copy; 2023 SurroundScan. All Rights Reserved.
         </footer>
     </div>
 </body>

@@ -18,7 +18,7 @@
         padding: 10px;
     }
 
-    input[type="submit"] {
+    button {
         padding: 10px 20px;
         background-color: #4285F4;
         color: #fff;
@@ -70,9 +70,9 @@
         <div id="list">
             <!-- <li><a href="#">Home</a></li> -->
             <li>
-                <a href="#">Hello,username</a>
+                <a>Hello,username</a>
                 <div class="submenu">
-                    <a href="#">My profile</a>
+                    <a href="{{url_for('profile')}}">My profile</a>
                     <a href="#">Log out</a>
                 </div>
             </li>
@@ -86,13 +86,15 @@
 
         <h1>Welcome to map</h1>
         <div class="search">
-            <form action="" method="">
-                <input type="text" name="textblock" placeholder="Enter your IP address">
-                <input type="submit" value="Search">
+            <form method="GET">
+                <input type="text" name="IP" placeholder="Enter your IP address">
+                <button type="submit">Search</button>
             </form>
         </div>
         <div class="context">
             <p>map</p>
+            <p>lat: {{lat}}</p>
+            <p>lon: {{lon}}</p>
         </div>
 
     </div>
@@ -103,3 +105,5 @@
 </footer>
 
 </html>
+
+

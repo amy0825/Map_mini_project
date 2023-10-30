@@ -61,15 +61,15 @@
 <header>
     <ul class="menu">
         <div id="logo">
-            <li class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="" height="45px"></li>
+            <li class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="" height="50px"></li>
         </div>
         
         <div id="list">
             <!-- <li><a href="#">Home</a></li> -->
             <li>
-                <a href="#">Hello,username</a>
+                <a>Hello,username</a>
                 <div class="submenu">
-                    <a href="#">My profile</a>
+                    <a href="{{url_for('profile')}}">My profile</a>
                     <a href="#">Log out</a>
                 </div>
             </li>
