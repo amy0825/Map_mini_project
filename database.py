@@ -15,16 +15,10 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    fname = Column(String(64),nullable=True)
-    lname = Column(String(64),nullable=True)
+    uname = Column(String(64),nullable=True)
     email = Column(String(64),nullable=True,unique=True)
     pwd = Column(String(64))
 
-    def __init__(self, fname, lname, email, pwd):
-        self.fname = fname
-        self.lname = lname
-        self.email = email
-        self.pwd = pwd
 
 class Location(Base):
     __tablename__ = 'location'
@@ -37,7 +31,7 @@ DBSession = sessionmaker(bind=engine)
 
 session = DBSession()
 
-new_user = User(fname="test",lname="test",email="test@gmail.com",pwd="password")
+new_user = User(uname="test",email="test@gmail.com",pwd="password")
 #session.add(new_user)
 #session.commit()
 #session.close()
