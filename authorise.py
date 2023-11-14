@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import requests
+import database
 
 auth = Flask(__name__)
 
@@ -46,14 +47,10 @@ def getRegisterForm():
         if (validUname(uname) and validPass(password) and validEmail(email) and validRepPss(repPassword)):
                 # 连接数据库fun
                 # 加入数据库fun
-                return
+                return render_template("main.html")
 
-@auth.route('/login/into',methods =["POST"])
-def getLoginForm():
-        # get input from html form
-        uname = request.form.get("username") 
-        password = request.form.get("password")
-        
+
+
   
 # 从database.py导入连接数据库，添加数据functions
 # 连接数据库fun
