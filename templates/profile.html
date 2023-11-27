@@ -67,10 +67,10 @@
         <div id="list">
             <!-- <li><a href="#">Home</a></li> -->
             <li>
-                <a>Hello,username</a>
+                <a>Hello,{{'session.username'}}</a>
                 <div class="submenu">
                     <a href="{{url_for('profile')}}">My profile</a>
-                    <a href="#">Log out</a>
+                    <a href="{{url_for('logout')}}">Log out</a>
                 </div>
             </li>
         </div>
