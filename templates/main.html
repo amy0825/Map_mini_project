@@ -5,7 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Document</title>
+    <title>Surround Scan</title>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKkcdsF_5weCl6esnp3rxfelLClTgfSCk&callback=initMap"></script>
+<script>
+       // Initialize the map with the provided latitude and longitude
+       function initMap() {
+            var lat = {{ lat }};
+            var lon = {{ lon }};
+            var myLatLng = {lat: lat, lng: lon};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: myLatLng,
+                zoom: 12
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Location'
+            });
+        }
+
+    </script>
 </head>
 <style>
     .search {
@@ -48,7 +69,8 @@
     .submenu {
         display: none;
         position: absolute;
-        background-color: #117b3f;;
+        background-color: #117b3f;
+        ;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
         padding: 10px;
         z-index: 1;
@@ -66,12 +88,15 @@
         <div id="logo">
             <li class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="" height="45px"></li>
         </div>
-        
+
         <div id="list">
-            <!-- <li><a href="#">Home</a></li> -->
             <li>
-                <a>Hello,username</a>
+                <a>
+                {% if current_user.is_authenticated %}
+                    Hi, {{ current_user.uname }}!
+                {% endif %}</a>
                 <div class="submenu">
+                    <a href="#">Home</a>
                     <a href="{{url_for('profile')}}">My profile</a>
                     <a href="#">Log out</a>
                 </div>
@@ -81,22 +106,31 @@
 </header>
 
 <body>
-
     <div id="container">
-
         <h1>Welcome to map</h1>
         <div class="search">
-            <form method="GET">
-                <input type="text" name="IP" placeholder="Enter your IP address">
+         <form method="POST" action="/get_location">
+                <label for="ip_address">Enter IP Address:</label>
+                <input type="text" name="ip_address" id="ip_address" required>
                 <button type="submit">Search</button>
-            </form>
-        </div>
-        <div class="context">
-            <p>map</p>
-            <p>lat: {{lat}}</p>
-            <p>lon: {{lon}}</p>
-        </div>
+        </form>
+    </div>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
 
+    {% if result %}
+        <h2>Location Information:</h2>
+
+        <p>IP Address: {{ result.query }}</p>
+         <p>Country: {{ result.country }}</p>
+         <p>City: {{ result.city }}</p>
+         <p>lat: {{ result.lat }}</p>
+         <p>lon: {{ result.lon }}</p>
+
+        <!-- Add a div element to display the Google Map -->
+        <div id="map" style="height: 400px; width: 100%;"></div>
+    {% endif %}
     </div>
 
 </body>
@@ -105,5 +139,3 @@
 </footer>
 
 </html>
-
-

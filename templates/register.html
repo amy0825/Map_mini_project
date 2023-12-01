@@ -9,16 +9,23 @@
         <h2>Weclome to register home</h2>
         <div class="form1">
             <form action="{{url_for('getRegisterForm')}}" method="post">
-                <label for="username">Username：</label></br>
+                {% if error_message %}
+                <p style="color: red;">{{ error_message }}</p>
+                {% endif %}
+                <label for="username">Username：</label>
+                <span class="rule-span">* Username must be between 4 and 8 characters, no spaces.</span></br>
                 <input type="text" id="uname" name="username" placeholder="Your Username" required><br><br>
 
-                <label for="email">Email：</label></br>
+                <label for="email">Email：</label>
+                <span class="rule-span">* Please enter a valid email address.</span></br>
                 <input type="email" id="email" name="email" placeholder="Email Address"required><br><br>
 
                 <label for="password">Password：</label></br>
                 <input type="password" id="pwd" name="password" placeholder="Password"required><br><br>
 
-                <label for="confirm_password">Repeated-password：</label></br>
+                <label for="confirm_password">Repeated-password：</label>
+                <span class="rule-span">* Password must be at least 8 characters long and include an uppercase letter.</span>
+                </br>
                 <input type="password" id="rep_pwd" name="repeated_password" placeholder="Repeated Password" required><br><br>
 
                 <button type="submit">Submit</button></br>

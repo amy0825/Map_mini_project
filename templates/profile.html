@@ -5,46 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Document</title>
+    <title>Surround Scan</title>
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKkcdsF_5weCl6esnp3rxfelLClTgfSCk&callback=initMap"></script>
 </head>
 <style>
-    table {
-        width: 500px;
-        height: 500px;
-        border-collapse: collapse;
-        text-align: center;
-        margin-left: 100px;
-        margin-right: 100px;
-        display: inline;
-    }
-
-    .tableform {
-        text-align: center;
-
-    }
-
-    #table1 {
-        /* float: left; */
-
-    }
-
-    #table2 {
-        /* float: right; */
-    }
-
-    th {
-        border: 1px solid #181414;
-        text-align: center;
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-    }
-
-        /* hidden log out */
-        .submenu {
+    /* hidden log out */
+    .submenu {
         display: none;
         position: absolute;
-        background-color: #117b3f;;
+        background-color: #117b3f;
+        ;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
         padding: 10px;
         z-index: 1;
@@ -56,6 +27,31 @@
         display: block;
 
     }
+
+    #history-list {
+        text-align: center;
+    }
+
+    .left-ul {
+        float: left;
+        width: 20%;
+        list-style-type: none;
+        padding: 0;
+        margin-left: 0;
+        height: 400;
+    }
+
+    .left-ul li {
+        display: block;
+    }
+
+    #map-container {
+        float: right;
+    }
+
+    .container {
+        margin: 10px;
+    }
 </style>
 
 <header>
@@ -63,12 +59,15 @@
         <div id="logo">
             <li class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="" height="50px"></li>
         </div>
-        
+
         <div id="list">
-            <!-- <li><a href="#">Home</a></li> -->
             <li>
-                <a>Hello,{{'session.username'}}</a>
+                <a>
+                    {% if current_user.is_authenticated %}
+                    Hi, {{ current_user.uname }}!
+                    {% endif %}</a>
                 <div class="submenu">
+                    <a href="{{url_for('main')}}">Home</a>
                     <a href="{{url_for('profile')}}">My profile</a>
                     <a href="{{url_for('logout')}}">Log out</a>
                 </div>
@@ -79,39 +78,51 @@
 
 <body>
     <div class="container">
-        <h1>welcome to profile page</h1>
-
-        <div class="tableForm">
-
-            <table id="table1">
-                <tr>
-                    <th>History</th>
-                </tr>
-                <tr>
-                    <th>22222222222222222222222222222222222</th>
-                </tr>
-                <tr>
-                    <th>3</th>
-                </tr>
-                <tr>
-                    <th>4</th>
-                </tr>
-                <tr>
-                    <th>5</th>
-                </tr>
-                <tr>
-                    <th>.....</th>
-                </tr>
-                </tr>
-
-            </table>
-            <table id="table2">
-                <tr>
-                    <th>.....</th>
-                </tr>
-            </table>
+        <div id="history-list">
+            <h1>Welcome to My Profile</h1>
+            <ul id="locationList" class="left-ul">
+                <li class="location-item" style="color: #fff; font-size: 20px;">History Search</li>
+                {% for item in result %}
+                <li class="location-item" data-loc="{{ item.loc }}">
+                    <a href="#">{{item.time}}</br>{{ item.loc }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div id="map-container" style="height: 400px; width: 80%;"></div>
         </div>
+
     </div>
+
+    <script>
+        var locationList = document.getElementById('locationList');
+        var mapContainer = document.getElementById('map-container');
+
+        locationList.addEventListener('click', function (event) {
+            // Check if the clicked element is an li with the 'location-item' class
+            if (event.target.tagName === 'A' && event.target.parentElement.classList.contains('location-item')) {
+                // Get the data-loc attribute from the clicked li element
+                var locString = event.target.parentElement.getAttribute('data-loc');
+                var [lat, lon] = locString.split(',').map(parseFloat);
+
+                // Call a function to display the map with the extracted lat and lon
+                displayMap(lat, lon);
+            }
+        });
+
+        function displayMap(lat, lon) {
+            // Use lat and lon to display the map, e.g., using Google Maps API
+            var map = new google.maps.Map(mapContainer, {
+                center: { lat: lat, lng: lon },
+                zoom: 12
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: lat, lng: lon },
+                map: map,
+                title: 'Location'
+            });
+        }
+    </script>
 </body>
 
 <footer>
@@ -119,4 +130,3 @@
 </footer>
 
 </html>
-

@@ -1,13 +1,16 @@
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 import requests
-from map import get_location
-from database import add_user, add_loc, logout, User
+from database import add_user, add_loc, logout, User, Location
 from authorise import validUname, validEmail, validPass, validRepPss
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
-
+import googlemaps
 
 app = Flask(__name__)
+
+gmaps = googlemaps.Client(key='AIzaSyAKkcdsF_5weCl6esnp3rxfelLClTgfSCk')
+
 app.secret_key = "mySecretKey"
 
 login_manager = LoginManager()
@@ -34,17 +37,19 @@ def login():
 def register():
     return render_template("register.html")
 
-# refer to main context page
+# # refer to main context page
 @app.route("/main")
 @login_required
 def main():
     return render_template("main.html")
 
 # refer to profile page
-@login_required
 @app.route("/profile")
+@login_required
 def profile():
-    return render_template("profile.html")
+    result = Location.query.filter_by(uid=current_user.id).all()
+    return render_template("profile.html", result = result)
+
 
 # success login
 @app.route('/login/into',methods =["GET","POST"])
@@ -58,17 +63,14 @@ def getLoginForm():
         if user:
             if check_password_hash(user.pwd,password):
                 login_user(user)
-                return redirect(url_for('main'))
+                return render_template("main.html",username=user)
             else:
-                print(user.pwd)
-                print( generate_password_hash(password))
-                return ("<h1>wrong password</h1>")
+                return render_template('login.html', error_message='The password is not match with the account')
         else:
-            return ("<h1>you need register</h1>")
+            return render_template('login.html', error_message='This account is not exist, please have a register')
 
     return render_template("main.html")
-
-# after submit, post data to vertify with database，获取注册表单的信息
+# after submit, post data to vertify with database
 @app.route('/register/add_new_user', methods =["GET", "POST"])
 def getRegisterForm():
      # get input from html form
@@ -79,19 +81,43 @@ def getRegisterForm():
     user = User.query.filter_by(email=email).first()
 
     if user:
-        return ("<h1>this email address is exits</h1>")
+        return render_template('register.html', error_message='This email address is exits')
     elif validUname(uname) is False:
-        return ("<h1>the username</h1>")
+        return render_template('register.html', error_message='The username should not contain empty value or space and the length should greate than 4 and less than 8')
     elif validPass(password) is False:
-        return ("<h1>the password</h1>")
+        return render_template('register.html', error_message='The length of password should least 8 characters and least one upper letter')
     elif validEmail(email) is False:
-        return ("<h1>the email</h1>")
+        return render_template('register.html', error_message='The email should not be empty and without the email format')
     elif validRepPss(password, repPassword) is False:
-        return ("<h1>the double password</h1>")
+        return render_template('register.html', error_message='Must same with the last password')
     else:
         hash_pwd = generate_password_hash(password)
         add_user(uname,email,hash_pwd)
         return redirect(url_for('login'))
+
+
+
+@login_required
+@app.route('/get_location', methods=['POST'])
+def get_location():
+    ip_address = request.form['ip_address']
+    api_url = f'http://ip-api.com/json/{ip_address}'
+    user_id = current_user.uid
+    
+    try:
+        response = requests.get(api_url)
+        data = response.json()
+        if data['status'] == 'fail':
+            return render_template('main.html', error_message='Invalid IP address')
+        else:
+            lat = data['lat']
+            lon = data['lon']
+            location = str(lat)+","+str(lon)
+            add_loc(location,user_id)
+            return render_template('main.html', result=data, lat=lat, lon=lon)
+    except requests.RequestException as e:
+        return render_template('main.html', error_message='Error fetching data from the API')
+
 
 # refer to login page
 @app.route("/logout", methods =["GET", "POST"])
