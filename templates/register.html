@@ -13,7 +13,7 @@
                 <p style="color: red;">{{ error_message }}</p>
                 {% endif %}
                 <label for="username">Username：</label>
-                <span class="rule-span">* Username must be between 4 and 8 characters, no spaces.</span></br>
+                <span class="rule-span">* Username must be between 5 and 8 characters, no spaces.</span></br>
                 <input type="text" id="uname" name="username" placeholder="Your Username" required><br><br>
 
                 <label for="email">Email：</label>
@@ -21,10 +21,11 @@
                 <input type="email" id="email" name="email" placeholder="Email Address"required><br><br>
 
                 <label for="password">Password：</label></br>
+                <span class="rule-span">* Password must be at least 8 characters long and include an uppercase letter.</span>
                 <input type="password" id="pwd" name="password" placeholder="Password"required><br><br>
 
                 <label for="confirm_password">Repeated-password：</label>
-                <span class="rule-span">* Password must be at least 8 characters long and include an uppercase letter.</span>
+                <span class="rule-span">* Enter the password again.</span>
                 </br>
                 <input type="password" id="rep_pwd" name="repeated_password" placeholder="Repeated Password" required><br><br>
 
