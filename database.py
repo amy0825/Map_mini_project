@@ -31,7 +31,7 @@ class Location(Base, UserMixin):
     __tablename__ = 'location'
 
     pid = Column(Integer, primary_key=True, autoincrement=True)
-    loc = Column(String(64),unique=True)
+    loc = Column(String(64))
     time = Column(DateTime, default=datetime.utcnow)
     uid = Column(Integer, ForeignKey('users.id'))
 
