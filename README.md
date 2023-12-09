@@ -1,3 +1,4 @@
+**SurroundScan
 We deployed a web application called SurroundScan. This software visualizes current IP addresses in map form and stores historical search, secure login, logout, and registration information. For this project we used Python Flask, Javascript and HTML programming skills and also created a virtual machine using Google Cloud Platform, the reason for creating a virtual machine is that this greatly reduces costs and makes it easier to collaborate with colleagues. We also stored all of our databases in Google Cloud SQL, which also greatly reduced costs and made the data much easier to work with than storing it in a physical database. In the following, I will explain carefully how is this project structured. 
 
 
