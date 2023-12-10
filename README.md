@@ -15,6 +15,7 @@ Here is a list of all the documents need to running this project.
 <img width="393" alt="structure" src="https://github.com/amy0825/Map_mini_project/assets/40476807/687b902b-feeb-44e5-8a02-9f0d06f677c4">
 
 Pre-requirement
+
 Install Flask
 
 Install SQLAlchemy
