@@ -16,9 +16,13 @@ Here is a list of all the documents need to running this project.
 
 Pre-requirement
 Install Flask
+
 Install SQLAlchemy
+
 Install werkzeug
+
 Install Flask login
+
 Create An account for Google Cloud Platform
 
 
