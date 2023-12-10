@@ -5,11 +5,13 @@ We deployed a web application called SurroundScan. This software visualizes curr
 
 Software Architecture
 The image below shows how this project from the front-end transfers data to the back-end, and during each step, the method have used. 
+
 ![1](https://github.com/amy0825/Map_mini_project/assets/40476807/60e5cec7-2217-401a-861f-2de92f572112)
 
 
 Structure Documents
-Here is a list of all the documents need to running this project
+Here is a list of all the documents need to running this project.
+
 <img width="393" alt="structure" src="https://github.com/amy0825/Map_mini_project/assets/40476807/687b902b-feeb-44e5-8a02-9f0d06f677c4">
 
 Pre-requirement
