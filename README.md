@@ -30,7 +30,11 @@ Create An account for Google Cloud Platform
 <img width="1243" alt="home page" src="https://github.com/amy0825/Map_mini_project/assets/40476807/783535ca-bc4b-4334-966b-90a4f21ce6f0">
 
 External API
+http://ip-api.com/json
+https://mapsplatform.google.com/
 
 CRUD method
+CRUD(Create, Read, Update, Detele) method is used in widely place in this project, this method is used in the HTTP response, to get the user's input from the form. It is also used in the database to access the data, adding the data to the database.
 
 Database
+Google Cloud
