@@ -36,6 +36,7 @@ http://ip-api.com/json
 https://mapsplatform.google.com/
 
 CRUD method
+
 CRUD(Create, Read, Update, Detele) method is used in widely place in this project, this method is used in the HTTP response, to get the user's input from the form. It is also used in the database to access the data, adding the data to the database.
 
 Database
